@@ -8,7 +8,7 @@ dotenv.config();
 console.log(process.env.MONGO_URL)
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT;
 
 const movies = [
   {
@@ -128,6 +128,7 @@ app.get("/movies", async function (request, response) {
   response.send(movie);
 });
 
+//delelte one movie by id
 app.delete("/movies/:id", async function (request, response) {
   //dn.movies.deleteOne({id :"102"})
   console.log(request.params);
@@ -138,6 +139,16 @@ app.delete("/movies/:id", async function (request, response) {
     .db("new")
     .collection("movies")
     .deleteOne({ id: id });
+  response.send(movie);
+});
+
+//delete all movies
+app.delete("/movies/", async function (request, response) {
+  //dn.movies.deleteMany({})
+  const movie = await client
+    .db("new")
+    .collection("movies")
+    .deleteMany({});
   response.send(movie);
 });
 
