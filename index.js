@@ -1,6 +1,7 @@
 import express from "express"; // "type" : "module"
 // const express = require("express");
 import { MongoClient } from "mongodb";
+import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config();
 
@@ -8,6 +9,7 @@ dotenv.config();
 console.log(process.env.MONGO_URL)
 
 const app = express();
+
 // const PORT = 4000 
 const PORT = process.env.PORT;
 
@@ -86,6 +88,7 @@ const movies = [
 // const MONGO_URL = "mongodb+srv://user1:Arrismaa@cluster0.y1tvm.mongodb.net/?retryWrites=true&w=majority";
 const MONGO_URL = process.env.MONGO_URL;
 app.use(express.json());
+app.use(cors());
 
 // to connect mongodb and node
 async function createConnection() {
