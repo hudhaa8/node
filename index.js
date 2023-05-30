@@ -282,7 +282,7 @@ async function createConnection() {
   console.log("Mongo is connected🎉🌹✌");
   return client;
 }
-const client = await createConnection();
+export const client = await createConnection();
 
 app.get("/", function (request, response) {
   response.send("Hello World");

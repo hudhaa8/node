@@ -2,6 +2,8 @@ import express from 'express';
 
 const router = express.Router()
 
+import { client } from '../index.js';
+
 // it is important to change path ""/movies/:id" to "/:id"
 
 router.get(":id", async function (request, response) {
