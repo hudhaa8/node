@@ -12,9 +12,10 @@ router.get("/:id", async function (request, response) {
     // by using obj destructuring take id
     const { id } = request.params;
     // const movie = movies.find((mv)=> mv.id === id)
-    const movie = await client.db("new").collection("movies").find({ id: id });
-    movie ? response.send(movie) : response.status(404).send({ message: "No such movie found 🌝" });
-    
+    const movie = await client.db("new").collection("movies").findOne({ id: id });
+    // response.send(movie) : response.status(404).send({ message: "No such movie found 🌝" });
+    // console.log(movie);
+    response.send(movie)
   });
 
   //post api
