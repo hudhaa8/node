@@ -2,9 +2,9 @@ import express from 'express';
 
 const router = express.Router()
 
+// it is important to change path ""/movies/:id" to "/:id"
 
-
-router.get("/movies/:id", async function (request, response) {
+router.get(":id", async function (request, response) {
     console.log(request.params);
     // by using obj destructuring take id
     const { id } = request.params;
@@ -15,7 +15,7 @@ router.get("/movies/:id", async function (request, response) {
       : response.status(404).send({ message: "No such movie found 🌝" });
   });
   
-  router.post("/movies", async function (request, response) {
+  router.post("/", async function (request, response) {
     //dn.movies.insertMany({})
     const data = request.body;
     console.log(data);
@@ -23,13 +23,13 @@ router.get("/movies/:id", async function (request, response) {
     response.send(movie);
   });
   
-  router.get("/movies", async function (request, response) {
+  router.get("/", async function (request, response) {
     const movie = await client.db("new").collection("movies").find({}).toArray();
     response.send(movie);
   });
   
   //delelte one movie by id
-  router.delete("/movies/:id", async function (request, response) {
+  router.delete("/:id", async function (request, response) {
     //dn.movies.deleteOne({id :"102"})
     console.log(request.params);
     // by using obj destructuring take id
@@ -43,7 +43,7 @@ router.get("/movies/:id", async function (request, response) {
   });
   
   //delete all movies
-  router.delete("/movies/", async function (request, response) {
+  router.delete("/", async function (request, response) {
     //dn.movies.deleteMany({})
     const movie = await client
       .db("new")
@@ -52,7 +52,8 @@ router.get("/movies/:id", async function (request, response) {
     response.send(movie);
   });
   
-  router.put("/movies/:id", async function (request, response) {
+  //update movie by id
+  router.put("/:id", async function (request, response) {
     //dn.movies.updateOne({id : "102"}, {$set : updated data})
     console.log(request.params);
     // by using obj destructuring take id
