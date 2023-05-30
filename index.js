@@ -179,15 +179,16 @@
 
 
 
-// below the code is understandable, old format
-
+// below the code is optimized (this is optonal ) otherwise you can use top code 
 
 import express from "express"; // "type" : "module"
 // const express = require("express");
+import bcrypt from "bcrypt";
 import { MongoClient } from "mongodb";
-import {moviesRouter} from  "./routes/movies.js"
-import cors from 'cors'
-import dotenv from 'dotenv'
+import {moviesRouter} from  "./routes/movies.js";
+import cors from 'cors';
+import dotenv from 'dotenv';
+
 dotenv.config();
 
 // console.log(process.env)
@@ -298,4 +299,9 @@ app.listen(PORT, () => {
   console.log(`server running in ${PORT}✌`);
 });
 
-//node project
+async function genPassword(password) {
+  const salt = await bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hash(password,salt)
+  console.log({salt, hashPassword})
+}
+genPassword("password@123")

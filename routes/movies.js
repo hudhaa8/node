@@ -6,17 +6,18 @@ import { client } from '../index.js';
 
 // it is important to change path ""/movies/:id" to "/:id"
 
+//get api
 router.get(":id", async function (request, response) {
     console.log(request.params);
     // by using obj destructuring take id
     const { id } = request.params;
     // const movie = movies.find((mv)=> mv.id === id)
-    const movie = await client.db("new").collection("movies").findOne({ id: id });
-    movie
-      ? response.send(movie)
-      : response.status(404).send({ message: "No such movie found 🌝" });
+    const movie = await client.db("new").collection("movies").find({ id: id });
+    movie ? response.send(movie) : response.status(404).send({ message: "No such movie found 🌝" });
+    
   });
-  
+
+  //post api
   router.post("/", async function (request, response) {
     //dn.movies.insertMany({})
     const data = request.body;
@@ -70,4 +71,3 @@ router.get(":id", async function (request, response) {
   
   export const moviesRouter = router
 
-  // expressjs
