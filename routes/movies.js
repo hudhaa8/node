@@ -7,7 +7,7 @@ import { client } from '../index.js';
 // it is important to change path ""/movies/:id" to "/:id"
 
 //get api
-router.get(":id", async function (request, response) {
+router.get("/:id", async function (request, response) {
     console.log(request.params);
     // by using obj destructuring take id
     const { id } = request.params;
