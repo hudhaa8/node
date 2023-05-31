@@ -302,9 +302,4 @@ app.listen(PORT, () => {
   console.log(`server running in ${PORT}✌`);
 });
 
-async function genPassword(password) {
-  const salt = await bcrypt.genSalt(10);
-  const hashPassword = await bcrypt.hash(password,salt)
-  console.log({salt, hashPassword})
-}
-genPassword("password@123")
+
