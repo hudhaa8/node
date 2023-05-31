@@ -13,7 +13,7 @@ async function genPassword(password) {
 
   //post api for signup user
   router.post("/signup", async function (request, response) {
-    //dn.movies.insertMany({})
+    //db.users.insertOne({})
     //this data (username, password) from postman body 
     const {username, password} = request.body;
     const hashPassword =await genPassword(password) 
@@ -25,6 +25,14 @@ async function genPassword(password) {
     response.send(result);
   });
   
+
+  router.post("/login", async function (request, response) {
+    //db.users.findOne({username : "hudha malick"})
+    const {username, password} = request.body;
+    const userFromDB = await client.db("new").collection("users").findOne({username : "hudha malick"});
+    console.log(userFromDB,password);
+    response.send(userFromDB)
+  });
   
   export const usersRouter = router
   //import at index.js
