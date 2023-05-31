@@ -15,9 +15,8 @@ async function genPassword(password) {
   router.post("/signup", async function (request, response) {
     //dn.movies.insertMany({})
     //this data (username, password) from postman body 
-    // const data = request.body;
     const {username, password} = request.body;
-    const hashPassword = genPassword(password) 
+    const hashPassword =await genPassword(password) 
     const newUser = {
       username : username,
       password : hashPassword
