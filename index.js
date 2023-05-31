@@ -186,6 +186,7 @@ import express from "express"; // "type" : "module"
 import bcrypt from "bcrypt";
 import { MongoClient } from "mongodb";
 import {moviesRouter} from  "./routes/movies.js";
+import { usersRouter } from "./routes/users.js";
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -294,6 +295,8 @@ app.get("/", function (request, response) {
 // });
 
 app.use("/movies", moviesRouter)
+
+app.use("/users", usersRouter)
 
 app.listen(PORT, () => {
   console.log(`server running in ${PORT}✌`);
