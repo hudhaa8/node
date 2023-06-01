@@ -274,8 +274,9 @@ const movies = [
 // const MONGO_URL = "mongodb://localhost";
 // const MONGO_URL = "mongodb+srv://user1:Arrismaa@cluster0.y1tvm.mongodb.net/?retryWrites=true&w=majority";
 const MONGO_URL = process.env.MONGO_URL;
-app.use(express.json());
-app.use(cors());
+//middle ware- intercept - convert body to json
+app.use(express.json()); //this is inbuilt middle ware in express
+app.use(cors()); // third party middleware
 
 // to connect mongodb and node
 async function createConnection() {

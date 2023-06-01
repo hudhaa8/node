@@ -16,7 +16,7 @@ async function genPassword(password) {
   //post api for signup user
   router.post("/signup", async function (request, response) {
     //db.users.insertOne({})
-    //this data (username, password) from postman body 
+    //get this data (username, password) from postman body -destructuring
     const {username, password} = request.body;
     const hashPassword =await genPassword(password) 
     const newUser = {

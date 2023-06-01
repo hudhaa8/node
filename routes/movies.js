@@ -1,5 +1,5 @@
 import express from 'express';
-
+import {auth} from "../middleware/auth.js"
 const router = express.Router()
 
 import { client } from '../index.js';
@@ -27,7 +27,7 @@ router.get("/:id", async function (request, response) {
     response.send(movie);
   });
   
-  router.get("/", async function (request, response) {
+  router.get("/", auth, async function (request, response) {
     const movie = await client.db("new").collection("movies").find({}).toArray();
     response.send(movie);
   });
