@@ -270,7 +270,25 @@ const movies = [
     trailer: "https://www.youtube.com/embed/NgsQ8mVkN8w",
   },
 ];
-
+// const mobiles = [{
+//   model : "I phone 14",
+//   image : "https://img6.gadgetsnow.com/gd/images/products/additional/large/G390766_View_1/mobiles/smartphones/apple-iphone-14-128-gb-blue-6-gb-ram-.jpg",
+//   company : "Iphone"
+// },
+// {
+//   model : "Vivo X80",
+//   image : "https://img2.gadgetsnow.com/gd/images/products/additional/large/G364914_View_1/mobiles/smartphones/vivo-x80-256-gb-urban-blue-12-gb-ram-.jpg",
+//   company : "VIVO"
+// },
+// {
+//   model : "One plus 10 pro",
+//   image : "https://www.addmecart.com/wp-content/uploads/2022/11/01.2.jpg",
+//   company : "One plus"
+// },{
+//   model : "Samsung Galauxy S23",
+//   image : "https://m.media-amazon.com/images/I/61VfL-aiToL._SX679_.jpg",
+//   company : "Samsung"
+// }];
 // const MONGO_URL = "mongodb://localhost";
 // const MONGO_URL = "mongodb+srv://user1:Arrismaa@cluster0.y1tvm.mongodb.net/?retryWrites=true&w=majority";
 const MONGO_URL = process.env.MONGO_URL;
@@ -298,6 +316,19 @@ app.get("/", function (request, response) {
 app.use("/movies", moviesRouter)
 
 app.use("/users", usersRouter)
+
+app.get("/mobiles", async function (request, response) {
+  const mobile = await client.db("new").collection("mobiles").find({}).toArray();
+  response.send(mobile);
+});
+
+app.post("/mobiles", async function (request, response) {
+  //dn.movies.insertMany({})
+  const data = request.body;
+  console.log(data);
+  const mobile = await client.db("new").collection("mobiles").insertMany(data);
+  response.send(mobile);
+});
 
 app.listen(PORT, () => {
   console.log(`server running in ${PORT}✌`);
