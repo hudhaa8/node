@@ -330,7 +330,8 @@ app.post("/mobiles", async function (request, response) {
   //dn.movies.insertMany({})
   const data = request.body;
   console.log(data);
-  const mobile = await client.db("new").collection("mobiles").insertMany(data);
+  // const mobile = await client.db("new").collection("mobiles").insertMany(data);
+  const mobile = await client.db("new").collection("mobiles").insertOne(data);
   response.send(mobile);
 });
 
